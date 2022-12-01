@@ -22,15 +22,34 @@ type User {
   role: String!
 }
 
+type Post {
+  """id of the post"""
+  postId: String!
+
+  """title of the post"""
+  title: String!
+
+  """post content"""
+  content: String!
+
+  """post comments"""
+  comments: String!
+}
+
 type Query {
   users: [User!]!
   user(userId: String!): User!
+  posts: [Post!]!
+  post(postId: String!): Post!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(userId: String!): User!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(postId: String!): Post!
 }
 
 input CreateUserInput {
@@ -66,4 +85,27 @@ input UpdateUserInput {
   """role of the user"""
   role: String
   userId: String!
+}
+
+input CreatePostInput {
+  """title of the post"""
+  title: String!
+
+  """post content"""
+  content: String!
+
+  """post comments"""
+  comments: String!
+}
+
+input UpdatePostInput {
+  """title of the post"""
+  title: String
+
+  """post content"""
+  content: String
+
+  """post comments"""
+  comments: String
+  postId: String!
 }
